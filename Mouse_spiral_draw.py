@@ -3,6 +3,7 @@ import time
 import keyboard
 # import math
 # import threading
+from multiprocessing import Process
 
 # def listener():
 #     if keyboard.wait("q"):
@@ -62,10 +63,17 @@ def main():
 
         line_length *= factor
 
+        # if keyboard.is_pressed('q'):
+        #     pyautogui.mouseUp()
+        #     break
+
+if __name__ == '__main__':
+    process = Process(target=main)
+    process.start()
+    while process.is_alive():
         if keyboard.is_pressed('q'):
-            pyautogui.mouseUp()
+            process.terminate()
             break
-main()
 # t1 = threading.Thread(target=main)
 # t1.start()
 # keyboard.wait('q')
